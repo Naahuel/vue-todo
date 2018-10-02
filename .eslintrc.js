@@ -3,13 +3,17 @@ module.exports = {
         "browser": true,
         "es6": true
     },
-    "extends": "eslint:recommended",
-    "parser": "babel-eslint",
+    "extends": [
+        "eslint:recommended",
+        'plugin:vue/essential'
+    ],
     "parserOptions": {
         "ecmaVersion": 2015,
-        "sourceType": "module"
+        "sourceType": "module",
+        "parser": "babel-eslint"
     },
     "rules": {
+        "jsx" : 0,
         "indent": [
             "error",
             4
