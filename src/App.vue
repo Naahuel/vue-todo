@@ -1,29 +1,39 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div class="layout">
+    <AddTodoGroup />
+    <TodoGroups v-bind:groups="groups" />
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+// State utils
+import { mapState } from 'vuex';
+
+// Imported components
+import AddTodoGroup from '@/components/AddTodoGroup.vue';
+import TodoGroups from '@/components/TodoGroups.vue';
+
+export default {
+  // Component name
+  name: 'App',
+
+  // Imported components
+  components: {
+    TodoGroups,
+    AddTodoGroup
+  },
+
+  // Computed methods & state
+  // Ideally all the state should be handled here and
+  // passed down to children through props
+  computed: {
+    ...mapState({
+      groups: ({groups}) => groups
+    })
   }
-}
+};
+</script>
+
+<style lang="scss">
+
 </style>
