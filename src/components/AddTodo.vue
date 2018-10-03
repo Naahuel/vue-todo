@@ -50,5 +50,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
+  .md-icon-button{
+    position: relative;
+    z-index: 1;
+  }
 </style>
