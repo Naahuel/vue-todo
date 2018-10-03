@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import VuexPersist from 'vuex-persist';
 import uuid from 'uuid';
 
 // Mutation constants
@@ -7,12 +8,21 @@ import { ADD_TODO_GROUP, ADD_TODO, DO_TODO, UNDO_TODO, REMOVE_TODO, REMOVE_TODO_
 
 Vue.use(Vuex);
 
+// App state persistance
+const vuexPersist = new VuexPersist({
+  key: 'vue-todo',
+  storage: localStorage
+});
+
 export default new Vuex.Store({
 
   // Root state
   state: {
     groups:[]
   },
+
+  // Plugins
+  plugins: [vuexPersist.plugin],
 
   // Actions
   actions: {
