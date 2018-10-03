@@ -2,7 +2,7 @@
   <div class="todo-group">
     <h2 class="md-title">{{group.name}}</h2>
     <div v-if="group.todos.length">
-      <div v-if="!unresolved.length" class="todo-group__empty-unresolved">
+      <div v-if="!unresolved.length" class="todo-group__empty">
         <md-icon class="md-size-2x">done_all</md-icon>
         <div class="md-subheading">¡Todo hecho!</div>
       </div>
@@ -15,11 +15,10 @@
         </md-list-item>
       </md-list>
     </div>
-    <md-empty-state
-      v-if="!group.todos.length"
-      md-label="No tenés tareas!"
-      md-description="Creá una tarea para usar este grupo">
-    </md-empty-state>
+    <div v-if="!group.todos.length" class="todo-group__empty">
+      <md-icon class="md-size-2x">remove_circle_outline</md-icon>
+      <div class="md-subheading">No tenés ninguna tarea</div>
+    </div>
     <AddTodo v-bind:groupId="group.id" />
   </div>
 </template>
@@ -74,7 +73,7 @@ export default {
   .todo-group__todo-list--resolved{
     opacity: 0.3;
   }
-  .todo-group__empty-unresolved{
+  .todo-group__empty{
     text-align: center;
     margin-bottom: 1em;
   }
