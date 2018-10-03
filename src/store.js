@@ -42,9 +42,10 @@ export default new Vuex.Store({
       // Add a todo with a unique ID in a group
       state.groups.forEach((group, groupIndex) => {
         if( group.id == todo.groupId ){
-          state.groups[groupIndex].todos.unshift({
+          state.groups[groupIndex].todos.push({
             id: uuid(),
-            name: todo.name
+            name: todo.name,
+            resolved: false
           });
         }
       });

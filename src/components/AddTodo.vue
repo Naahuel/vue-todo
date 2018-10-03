@@ -1,9 +1,10 @@
 <template>
-  <div class="todo-group">
-    <input v-model="todoName" placeholder="Tarea">
-    <button @click="_addTodo">
-      Agregar tarea
-    </button>
+  <div class="add-todo">
+    <md-field>
+      <label>Tarea...</label>
+      <md-input v-model="todoName"></md-input>
+      <md-button @click="_addTodo" class="md-icon-button md-dense"><md-icon>done</md-icon></md-button>
+    </md-field>
   </div>
 </template>
 

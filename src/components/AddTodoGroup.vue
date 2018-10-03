@@ -1,9 +1,19 @@
 <template>
-  <div class="todo-group">
-    <input v-model="todoGroupName" placeholder="Nombre de grupo">
-    <button @click="_addTodoGroup">
-      Agregar grupo
-    </button>
+  <div>
+    <md-dialog-prompt
+      :md-active.sync="showAddDialog"
+      v-model="todoGroupName"
+      md-title="Agregar grupo de tareas"
+      md-input-placeholder="Nombre de grupo..."
+      md-input-maxlength="20"
+      md-cancel-text="Cancelar"
+      md-confirm-text="Listo"
+      @md-confirm="_addTodoGroup"
+    />
+
+    <md-button @click="_showAddDialog" class="md-fab md-fixed md-primary md-fab-bottom-right">
+      <md-icon>add</md-icon>
+    </md-button>
   </div>
 </template>
 
@@ -17,7 +27,8 @@ export default {
   // Local state
   data() {
     return {
-      todoGroupName: ''
+      todoGroupName: '',
+      showAddDialog: false
     };
   },
 
@@ -28,12 +39,22 @@ export default {
       if( this.todoGroupName ){
         // Call the action
         this.addTodoGroup(this.todoGroupName);
-        // Reset local text
-        this.todoGroupName = '';
+        // Reset local state
+        setTimeout(() => {
+          // HACK: There's some problem with the md-dialog-prompt component
+          // that doesn't let me update this
+          this.todoGroupName = '';
+        }, 0);
       }
     },
 
-    // Last but not least, map our vuex actions into this component
+    // Show the dialog
+    _showAddDialog(){
+      // Reset local text
+      this.showAddDialog = true;
+    },
+
+    // Map our vuex actions into this component
     ...mapActions(['addTodoGroup'])
   },
 };

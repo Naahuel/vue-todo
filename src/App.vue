@@ -1,8 +1,8 @@
 <template>
-  <div class="layout">
+  <md-content>
     <AddTodoGroup />
     <TodoGroups v-bind:groups="groups" />
-  </div>
+  </md-content>
 </template>
 
 <script>
@@ -30,10 +30,14 @@ export default {
     ...mapState({
       groups: ({groups}) => groups
     })
-  }
+  },
 };
 </script>
 
 <style lang="scss">
-
+  .md-content{
+    --md-theme-default-background: #eee;
+    padding: 1em;
+    min-height: 100vh;
+  }
 </style>
