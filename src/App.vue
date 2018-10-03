@@ -1,5 +1,8 @@
 <template>
   <md-content>
+    <md-toolbar class="md-primary">
+      <h3 class="md-title">Mis Tareas</h3>
+    </md-toolbar>
     <AddTodoGroup />
     <TodoGroups v-bind:groups="groups" />
   </md-content>
@@ -39,5 +42,14 @@ export default {
     --md-theme-default-background: #eee;
     padding: 1em;
     min-height: 100vh;
+    padding-top: 80px;
+
+    .md-toolbar{
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+    }
   }
 </style>

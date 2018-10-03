@@ -7,6 +7,7 @@ import './registerServiceWorker';
 import 'vue-material/dist/vue-material.min.css';
 import 'vue-material/dist/theme/default.css';
 import {
+  MdToolbar,
   MdEmptyState,
   MdList,
   MdButton,
@@ -18,6 +19,7 @@ import {
   MdDialogConfirm,
   MdField } from 'vue-material/dist/components';
 
+Vue.use(MdToolbar);
 Vue.use(MdEmptyState);
 Vue.use(MdList);
 Vue.use(MdButton);
