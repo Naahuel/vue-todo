@@ -13,7 +13,7 @@ import { mapActions } from 'vuex';
 
 export default {
   // Component Name
-  name: 'addTodo',
+  name: 'AddTodo',
 
   // Local state
   data() {

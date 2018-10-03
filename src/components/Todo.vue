@@ -1,6 +1,6 @@
 <template>
   <span class="todo-container">
-    <md-checkbox @change="_toggleTodo" :value="!todo.resolved">
+    <md-checkbox v-bind:class="{ 'todo--resolved': todo.resolved }" @change="_toggleTodo" :value="!todo.resolved">
       {{todo.name}}
     </md-checkbox>
     <md-button @click="_deleteTodo" class="md-icon-button">
@@ -57,9 +57,7 @@ export default {
     width: 100%;
     cursor: pointer;
   }
-  .md-checkbox label{
-    // For some reason this label stops
-    // the change event
-    pointer-events: none;
+  .todo--resolved{
+    text-decoration: line-through;
   }
 </style>
