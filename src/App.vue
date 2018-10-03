@@ -1,8 +1,13 @@
 <template>
-  <md-content>
-    <AddTodoGroup />
-    <TodoGroups v-bind:groups="groups" />
-  </md-content>
+  <md-app md-mode="reveal">
+    <md-app-toolbar class="md-primary">
+      <span class="md-title">Mis Tareas</span>
+    </md-app-toolbar>
+    <md-app-content>
+      <AddTodoGroup />
+      <TodoGroups v-bind:groups="groups" />
+    </md-app-content>
+  </md-app>
 </template>
 
 <script>
@@ -35,9 +40,8 @@ export default {
 </script>
 
 <style lang="scss">
-  .md-content{
+  .md-app{
     --md-theme-default-background: #eee;
-    padding: 1em;
     min-height: 100vh;
   }
 </style>
