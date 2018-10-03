@@ -1,6 +1,6 @@
 {
-  "name": "Mis Tareas",
-  "short_name": "Mis Tareas",
+  "name": "vue-todo",
+  "short_name": "vue-todo",
   "icons": [
     {
       "src": "/img/icons/android-chrome-192x192.png",
