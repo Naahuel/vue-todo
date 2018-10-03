@@ -2,7 +2,7 @@
   <div class="todo-group">
     <div class="todo-group__header">
       <h2 class="md-title">{{group.name}}</h2>
-      <md-button @click="_showRemoveDialog" class="md-dense md-fab md-fab-top-right">
+      <md-button @click="_showRemoveDialog" class="md-dense md-fab">
         <md-icon>delete</md-icon>
       </md-button>
     </div>
@@ -120,6 +120,9 @@ export default {
     &__header{
       // Header
       min-height: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
   }
 </style>
