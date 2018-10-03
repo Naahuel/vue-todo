@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 import uuid from 'uuid';
 
 // Mutation constants
-import { ADD_TODO_GROUP, ADD_TODO } from './mutation-constants';
+import { ADD_TODO_GROUP, ADD_TODO, DO_TODO, UNDO_TODO } from './mutation-constants';
 
 Vue.use(Vuex);
 
@@ -25,6 +25,16 @@ export default new Vuex.Store({
     addTodo ({commit}, todo) {
       commit(ADD_TODO, todo);
     },
+
+    // Do todo
+    doTodo ({commit}, todoId){
+      commit(DO_TODO, todoId);
+    },
+
+    // Undo todo
+    undoTodo ({commit}, todoId){
+      commit(UNDO_TODO, todoId);
+    }
   },
 
   // Mutations
@@ -48,6 +58,28 @@ export default new Vuex.Store({
             resolved: false
           });
         }
+      });
+    },
+
+    [DO_TODO] (state, todoId) {
+      // Set a todo to resolved
+      state.groups.forEach((group, groupIndex) => {
+        group.todos.forEach((todo, todoIndex) => {
+          if( todo.id == todoId ){
+            state.groups[groupIndex].todos[todoIndex].resolved = true;
+          }
+        });
+      });
+    },
+
+    [UNDO_TODO] (state, todoId) {
+      // Set a todo to unresolved
+      state.groups.forEach((group, groupIndex) => {
+        group.todos.forEach((todo, todoIndex) => {
+          if( todo.id == todoId ){
+            state.groups[groupIndex].todos[todoIndex].resolved = false;
+          }
+        });
       });
     },
   }
