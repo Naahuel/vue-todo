@@ -7,10 +7,10 @@
 
 
 export const ADD_TODO_GROUP = 'ADD_TODO_GROUP';
-export const ADD_TODO = 'ADD_TODO';
+export const ADD_TODO       = 'ADD_TODO';
 
 export const REMOVE_TODO_GROUP = 'REMOVE_TODO_GROUP';
-export const REMOVE_TODO = 'REMOVE_TODO';
+export const REMOVE_TODO       = 'REMOVE_TODO';
 
-export const DO_TODO = 'DO_TODO';
+export const DO_TODO   = 'DO_TODO';
 export const UNDO_TODO = 'UNDO_TODO';
