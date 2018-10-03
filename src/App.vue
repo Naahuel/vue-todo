@@ -46,7 +46,7 @@ export default {
 
     .md-toolbar{
       position: fixed;
-      z-index: 100;
+      z-index: 5;
       left: 0;
       top: 0;
       width: 100%;

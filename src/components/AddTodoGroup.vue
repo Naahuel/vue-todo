@@ -63,6 +63,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   .md-button{
-    z-index: 50;
+    z-index: 5;
   }
 </style>
