@@ -1,2 +1,3 @@
 node_modules
-dist
+# Unignored to use with github pages
+# dist
