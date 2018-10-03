@@ -1,4 +1,5 @@
 # vue-todo
+Yet another Vue.js todo list, implementing Vuex, Material Design & PWA capabilities.
 
 ## Project setup
 ```
