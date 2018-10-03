@@ -11,13 +11,13 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js');
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  'precache-manifest.199e40a5f94e3dd9932541dd6022b4e6.js'
+  "precache-manifest.e90f3f46d7286d4155b7c802aa2d42d9.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: 'vue-todo'});
+workbox.core.setCacheNameDetails({prefix: "vue-todo"});
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
