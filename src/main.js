@@ -15,6 +15,7 @@ import {
   MdIcon,
   MdDialog,
   MdDialogPrompt,
+  MdDialogConfirm,
   MdField } from 'vue-material/dist/components';
 
 Vue.use(MdEmptyState);
@@ -25,6 +26,7 @@ Vue.use(MdContent);
 Vue.use(MdIcon);
 Vue.use(MdDialog);
 Vue.use(MdDialogPrompt);
+Vue.use(MdDialogConfirm);
 Vue.use(MdField);
 
 Vue.config.productionTip = false;

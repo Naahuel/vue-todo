@@ -1,6 +1,11 @@
 <template>
   <div class="todo-group">
-    <h2 class="md-title">{{group.name}}</h2>
+    <div class="todo-group__header">
+      <h2 class="md-title">{{group.name}}</h2>
+      <md-button @click="_showRemoveDialog" class="md-dense md-fab md-fab-top-right">
+        <md-icon>delete</md-icon>
+      </md-button>
+    </div>
     <div v-if="group.todos.length">
       <div v-if="!unresolved.length" class="todo-group__empty">
         <md-icon class="md-size-2x">done_all</md-icon>
@@ -20,6 +25,14 @@
       <div class="md-subheading">No tenés ninguna tarea</div>
     </div>
     <AddTodo v-bind:groupId="group.id" />
+    <md-dialog-confirm
+      :md-active.sync="showRemoveDialog"
+      md-title="Borrar grupo"
+      :md-content="'¿Está seguro que desea borrar el grupo <strong>' + group.name + '</strong>?'"
+      md-confirm-text="Borrar"
+      md-cancel-text="Cancelar"
+      @md-confirm="_removeGroup"
+    />
   </div>
 </template>
 
@@ -27,6 +40,7 @@
 // Imported components
 import AddTodo from '@/components/AddTodo.vue';
 import Todo from '@/components/Todo.vue';
+import { mapActions } from 'vuex';
 
 export default {
   // Component name
@@ -38,9 +52,30 @@ export default {
     Todo
   },
 
+  // Local state
+  data(){
+    return {
+      showRemoveDialog: false
+    };
+  },
+
   // Props
   props: {
     group: Object
+  },
+
+  // Methods
+  methods:{
+    _showRemoveDialog(){
+      this.showRemoveDialog = true;
+    },
+
+    _removeGroup(){
+      this.removeTodoGroup(this.group.id);
+    },
+
+    // Map our vuex actions into this component
+    ...mapActions(['removeTodoGroup'])
   },
 
   // Computed data
@@ -70,11 +105,21 @@ export default {
   .md-list-item{
     background-color: white;
   }
-  .todo-group__todo-list--resolved{
-    opacity: 0.3;
-  }
-  .todo-group__empty{
-    text-align: center;
-    margin-bottom: 1em;
+  .todo-group{
+    &__todo-list{
+      &--resolved{
+        // Resolved item list
+        opacity: 0.3;
+      }
+    }
+    &__empty{
+      // Empty state
+      text-align: center;
+      margin-bottom: 1em;
+    }
+    &__header{
+      // Header
+      min-height: 40px;
+    }
   }
 </style>

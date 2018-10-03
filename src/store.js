@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 import uuid from 'uuid';
 
 // Mutation constants
-import { ADD_TODO_GROUP, ADD_TODO, DO_TODO, UNDO_TODO } from './mutation-constants';
+import { ADD_TODO_GROUP, ADD_TODO, DO_TODO, UNDO_TODO, REMOVE_TODO, REMOVE_TODO_GROUP } from './mutation-constants';
 
 Vue.use(Vuex);
 
@@ -34,6 +34,16 @@ export default new Vuex.Store({
     // Undo todo
     undoTodo ({commit}, todoId){
       commit(UNDO_TODO, todoId);
+    },
+
+    // Remove todo
+    removeTodo ({commit}, todoId){
+      commit(REMOVE_TODO, todoId);
+    },
+
+    // Remove todo grup
+    removeTodoGroup ({commit}, groupId){
+      commit(REMOVE_TODO_GROUP, groupId);
     }
   },
 
@@ -80,6 +90,26 @@ export default new Vuex.Store({
             state.groups[groupIndex].todos[todoIndex].resolved = false;
           }
         });
+      });
+    },
+
+    [REMOVE_TODO] (state, todoId) {
+      // Remove todo by id
+      state.groups.forEach((group, groupIndex) => {
+        group.todos.forEach((todo, todoIndex) => {
+          if( todo.id == todoId ){
+            state.groups[groupIndex].todos.splice(todoIndex, 1);
+          }
+        });
+      });
+    },
+
+    [REMOVE_TODO_GROUP] (state, groupId) {
+      // Remove todo group by id
+      state.groups.forEach((group, groupIndex) => {
+        if( group.id == groupId ){
+          state.groups.splice(groupIndex, 1);
+        }
       });
     },
   }

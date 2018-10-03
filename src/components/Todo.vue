@@ -1,6 +1,11 @@
 <template>
-  <span class="todo-container" @click="_toggleTodo">
-    <md-checkbox @change="_toggleTodo" :value="!todo.resolved">{{todo.name}}</md-checkbox>
+  <span class="todo-container">
+    <md-checkbox @change="_toggleTodo" :value="!todo.resolved">
+      {{todo.name}}
+    </md-checkbox>
+    <md-button @click="_deleteTodo" class="md-icon-button">
+      <md-icon>highlight_off</md-icon>
+    </md-button>
   </span>
 </template>
 
@@ -18,20 +23,8 @@ export default {
 
   // Component methods
   methods: {
-    _toggleTodo(event){
-      if( event && typeof event !== 'boolean' ){
-        // If this is a boolean, it means it was fired from 
-        // the md-checkbox component. Otherwise it was a click
-        // event from the container
-        event.preventDefault();
-        event.stopPropagation();
-        // We do this because for some reason I can't use @click on the checkbox
-        // and if I do @change, it doesn't fire when I click the text of the checkbox
-        // We stop the event from propagating from the container to the checkbox which
-        // causes this method to fire twice
-      }
-      
-      if( !this.todo.resolved ){
+    _toggleTodo(change){
+      if( change ){
         // Fire the DO_TODO action
         this.doTodo(this.todo.id);
       } else {
@@ -40,8 +33,17 @@ export default {
       }
     },
 
+    _deleteTodo(event){
+      // Delete a todo
+      // Stop event!
+      event.stopPropagation();
+      event.preventDefault();
+      // Fire action!
+      this.removeTodo(this.todo.id);
+    },
+
     // Map our vuex actions into this component
-    ...mapActions(['doTodo', 'undoTodo'])
+    ...mapActions(['doTodo', 'undoTodo', 'removeTodo'])
   }
 };
 </script>
@@ -49,8 +51,15 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   .todo-container{
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     cursor: pointer;
+  }
+  .md-checkbox label{
+    // For some reason this label stops
+    // the change event
+    pointer-events: none;
   }
 </style>
