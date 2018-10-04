@@ -1,23 +1,15 @@
 <template>
   <div>
-    <md-dialog
+    <md-dialog-prompt
       :md-active.sync="showAddDialog"
-      :md-fullscreen="false"
-    >
-      <md-dialog-title>Nuevo groupo de tareas</md-dialog-title>
-
-      <md-dialog-content>
-        <md-field>
-          <label>Nombre de grupo...</label>
-          <md-input autofocus v-model="todoGroupName" md-counter="20"></md-input>
-        </md-field>
-      </md-dialog-content>
-
-      <md-dialog-actions>
-        <md-button class="md-primary" @click="showAddDialog = false">Cancelar</md-button>
-        <md-button class="md-primary" @click="_addTodoGroup">Guardar</md-button>
-      </md-dialog-actions>
-    </md-dialog>
+      v-model="todoGroupName"
+      md-title="Agregar grupo de tareas"
+      md-input-placeholder="Nombre de grupo..."
+      md-input-maxlength="20"
+      md-cancel-text="Cancelar"
+      md-confirm-text="Listo"
+      @md-confirm="_addTodoGroup"
+    />
 
     <md-button @click="_showAddDialog">
       Nuevo grupo <md-icon>add</md-icon>
@@ -48,7 +40,11 @@ export default {
         // Call the action
         this.addTodoGroup(this.todoGroupName);
         // Reset local state
-        Object.assign(this, {showAddDialog: false, todoGroupName: ''});
+        setTimeout(() => {
+          // HACK: There's some problem with the md-dialog-prompt component
+          // that doesn't let me update this
+          this.todoGroupName = '';
+        }, 0);
       }
     },
 
