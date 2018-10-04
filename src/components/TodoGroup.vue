@@ -123,6 +123,12 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      // Buttons
+      .md-button{
+        position: relative;
+        z-index: 1;
+      }
     }
   }
 </style>
