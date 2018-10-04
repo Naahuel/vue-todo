@@ -1,10 +1,12 @@
 <template>
   <div class="add-todo">
-    <md-field>
-      <label>Tarea...</label>
-      <md-input v-model="todoName"></md-input>
-      <md-button @click="_addTodo" class="md-icon-button md-dense"><md-icon>done</md-icon></md-button>
-    </md-field>
+    <form novalidate class="md-layout" @submit.prevent="_addTodo">
+      <md-field>
+        <label>Tarea...</label>
+        <md-input v-model="todoName"></md-input>
+        <md-button @click="_addTodo" class="md-icon-button md-dense"><md-icon>done</md-icon></md-button>
+      </md-field>
+    </form>
   </div>
 </template>
 
