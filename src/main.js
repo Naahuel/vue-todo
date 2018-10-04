@@ -9,6 +9,7 @@ import 'vue-material/dist/theme/default.css';
 import {
   MdToolbar,
   MdEmptyState,
+  MdProgress,
   MdList,
   MdButton,
   MdCheckbox,
@@ -21,6 +22,7 @@ import {
 
 Vue.use(MdToolbar);
 Vue.use(MdEmptyState);
+Vue.use(MdProgress);
 Vue.use(MdList);
 Vue.use(MdButton);
 Vue.use(MdCheckbox);

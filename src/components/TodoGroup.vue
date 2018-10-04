@@ -1,5 +1,6 @@
 <template>
   <div class="todo-group">
+    <md-progress-bar v-if="progress" md-mode="determinate" :md-value="progress"></md-progress-bar>
     <div class="todo-group__header">
       <h2 class="md-title">{{group.name}}</h2>
       <md-button @click="_showRemoveDialog" class="md-dense md-fab">
@@ -86,6 +87,9 @@ export default {
     resolved(){
       return this.group.todos.filter(item => item.resolved);
     },
+    progress(){
+      return 100 - 100*this.unresolved.length / (this.resolved.length + this.unresolved.length);
+    }
   }
 };
 </script>
@@ -106,6 +110,7 @@ export default {
     background-color: white;
   }
   .todo-group{
+    position: relative;
     &__todo-list{
       &--resolved{
         // Resolved item list
@@ -130,5 +135,12 @@ export default {
         z-index: 1;
       }
     }
+  }
+
+  .md-progress-bar{
+    position: absolute;
+    left: -1em;
+    top: -1em;
+    right: -1em;
   }
 </style>
