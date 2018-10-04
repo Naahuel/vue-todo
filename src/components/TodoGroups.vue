@@ -38,4 +38,8 @@ export default {
     margin-bottom: 1em;
     background-color: white;
   }
+
+  .md-empty-state{
+    transition: none !important;
+  }
 </style>
