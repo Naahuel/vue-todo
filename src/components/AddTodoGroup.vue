@@ -11,8 +11,8 @@
       @md-confirm="_addTodoGroup"
     />
 
-    <md-button @click="_showAddDialog" class="md-fab md-fixed md-primary md-fab-bottom-right">
-      <md-icon>add</md-icon>
+    <md-button @click="_showAddDialog">
+      Nuevo grupo <md-icon>add</md-icon>
     </md-button>
   </div>
 </template>

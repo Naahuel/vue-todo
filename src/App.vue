@@ -2,8 +2,8 @@
   <md-content>
     <md-toolbar class="md-primary">
       <h3 class="md-title">Mis Tareas</h3>
+      <AddTodoGroup />
     </md-toolbar>
-    <AddTodoGroup />
     <TodoGroups v-bind:groups="groups" />
   </md-content>
 </template>
@@ -50,6 +50,8 @@ export default {
       left: 0;
       top: 0;
       width: 100%;
+      display: flex;
+      justify-content: space-between;
     }
   }
 </style>
