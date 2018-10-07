@@ -3,7 +3,7 @@
     <form novalidate class="md-layout" @submit.prevent="_addTodo">
       <md-field>
         <label>Tarea...</label>
-        <md-input v-model="todoName"></md-input>
+        <md-input :value="todoName" @keyup="_handleKeyPress"></md-input>
         <md-button @click="_addTodo" class="md-icon-button md-dense"><md-icon>done</md-icon></md-button>
       </md-field>
     </form>
@@ -40,8 +40,21 @@ export default {
           name: this.todoName
         });
         // Reset local text
-        this.todoName = '';
+        setTimeout(() => {
+          // HACK: There's some problem with the md-input component
+          // that doesn't let me update this
+          this.todoName = '';
+        }, 0);
       }
+    },
+
+    // Handle input keypress
+    // USE KEYUP ENVENT
+    // This method is preferred to using v-model
+    // because it updates the model in real time in mobile browsers
+    // where keyboards don't fire the event corretly
+    _handleKeyPress(event){
+      this.todoName = event.target.value;
     },
 
     // Last but not least, map our vuex actions into this component

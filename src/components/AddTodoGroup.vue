@@ -1,15 +1,20 @@
 <template>
   <div>
-    <md-dialog-prompt
-      :md-active.sync="showAddDialog"
-      v-model="todoGroupName"
-      md-title="Agregar grupo de tareas"
-      md-input-placeholder="Nombre de grupo..."
-      md-input-maxlength="20"
-      md-cancel-text="Cancelar"
-      md-confirm-text="Listo"
-      @md-confirm="_addTodoGroup"
-    />
+    <md-dialog :md-active="showAddDialog" :md-fullscreen="false">
+      <md-dialog-title>
+        Agregar grupo de tareas
+      </md-dialog-title>
+      <md-dialog-content>
+        <md-field>
+          <label>Nombre de grupo...</label>
+          <md-input :autofocus="true" :value="todoGroupName" @keyup="_handleKeyPress" md-counter="20"></md-input>
+        </md-field>
+      </md-dialog-content>
+      <md-dialog-actions>
+        <md-button class="md-primary" @click="_hideAddDialog">Cancelar</md-button>
+        <md-button class="md-primary" @click="_addTodoGroup">Listo</md-button>
+      </md-dialog-actions>
+    </md-dialog>
 
     <md-button @click="_showAddDialog">
       Nuevo grupo <md-icon>add</md-icon>
@@ -40,8 +45,9 @@ export default {
         // Call the action
         this.addTodoGroup(this.todoGroupName);
         // Reset local state
+        this._hideAddDialog();
         setTimeout(() => {
-          // HACK: There's some problem with the md-dialog-prompt component
+          // HACK: There's some problem with the md-input component
           // that doesn't let me update this
           this.todoGroupName = '';
         }, 0);
@@ -52,6 +58,21 @@ export default {
     _showAddDialog(){
       // Reset local text
       this.showAddDialog = true;
+    },
+
+    // Hide the dialog
+    _hideAddDialog(){
+      // Reset local text
+      this.showAddDialog = false;
+    },
+
+    // Handle input keypress
+    // USE KEYUP ENVENT
+    // This method is preferred to using v-model
+    // because it updates the model in real time in mobile browsers
+    // where keyboards don't fire the event corretly
+    _handleKeyPress(event){
+      this.todoGroupName = event.target.value;
     },
 
     // Map our vuex actions into this component
